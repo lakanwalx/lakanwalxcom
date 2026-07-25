@@ -1,2 +1,0 @@
-# lakanwalxcom
-Official website 
