@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="dark scroll-smooth">
+<html lang="en" class="dark scroll-smooth" style="background-color: #050816;">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,7 +20,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- Tailwind CSS (Handles all CSS styling dynamically) -->
+    <!-- Tailwind CSS Engine -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -54,21 +54,21 @@
         }
     </script>
     
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Reliable Icon CDN (jsDelivr) -->
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.292.0/dist/umd/lucide.min.js"></script>
 
-    <!-- Custom Embedded CSS for Glassmorphism & Animations -->
+    <!-- Hardcoded Custom CSS -->
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #050816;
+            background-color: #050816; /* Hard fallback */
             color: #F8FAFC;
             overflow-x: hidden;
             transition: background-color 0.3s, color 0.3s;
         }
         .light body {
-            background-color: #F1F5F9;
-            color: #0F172A;
+            background-color: #F1F5F9 !important;
+            color: #0F172A !important;
         }
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: transparent; }
@@ -139,21 +139,20 @@
 <body class="bg-darkBg text-slate-100 min-h-screen flex flex-col selection:bg-gold selection:text-darkBg">
 
     <!-- Loading Screen -->
-    <div id="loader" class="fixed inset-0 z-[100] bg-darkBg flex items-center justify-center transition-opacity duration-500">
+    <div id="loader" class="fixed inset-0 z-[100] bg-[#050816] flex items-center justify-center transition-opacity duration-500">
         <div class="flex flex-col items-center gap-4">
-            <svg viewBox="0 0 100 100" class="w-16 h-16 animate-pulse">
-                <path d="M25 20 H40 V65 H65 V80 H25 Z" fill="#ffffff"/>
-                <path d="M40 30 L55 30 L80 70 H65 Z" fill="#4F9CF9"/>
-                <path d="M75 30 L60 30 L35 70 H50 Z" fill="#D4AF37"/>
+            <svg viewBox="0 0 100 100" class="w-16 h-16 animate-pulse" style="width: 64px; height: 64px;">
+                <path d="M22 22 H38 V62 H62 V78 H22 Z" fill="#ffffff"/>
+                <path d="M78 34 L38 78 H54 L94 34 Z" fill="#45B3A9"/>
             </svg>
-            <span class="font-mono text-gold text-sm tracking-widest">INITIALIZING...</span>
+            <span class="font-mono text-[#D4AF37] text-sm tracking-widest">INITIALIZING...</span>
         </div>
     </div>
 
-    <!-- Ambient Blobs -->
-    <div class="ambient-blob w-[600px] h-[600px] bg-gold top-0 left-[-100px] animate-pulse-slow"></div>
-    <div class="ambient-blob w-[500px] h-[500px] bg-electricBlue top-[40%] right-[-150px]"></div>
-    <div class="ambient-blob w-[700px] h-[700px] bg-neonPurple bottom-[-200px] left-[20%]"></div>
+    <!-- Ambient Background Colors -->
+    <div class="ambient-blob w-[600px] h-[600px] bg-[#D4AF37] top-0 left-[-100px] animate-pulse-slow"></div>
+    <div class="ambient-blob w-[500px] h-[500px] bg-[#4F9CF9] top-[40%] right-[-150px]"></div>
+    <div class="ambient-blob w-[700px] h-[700px] bg-[#8B5CF6] bottom-[-200px] left-[20%]"></div>
 
     <!-- Scroll Progress -->
     <div id="scroll-progress" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-gold via-electricBlue to-neonPurple z-50 transition-all duration-100 ease-out" style="width: 0%"></div>
@@ -164,10 +163,13 @@
             
             <!-- Brand Logo -->
             <a href="#home" onclick="switchPage('home')" class="flex items-center gap-3 group outline-none">
-                <div class="w-11 h-11 rounded-xl bg-[#101726] light:bg-white flex items-center justify-center p-2 border border-slate-700 light:border-slate-200 group-hover:border-gold transition-all shadow-lg">
+                <div class="w-11 h-11 rounded-xl bg-[#101726] light:bg-white flex items-center justify-center p-2 border border-slate-700 light:border-slate-200 group-hover:border-[#D4AF37] transition-all shadow-lg" style="width: 44px; height: 44px;">
                     <svg viewBox="0 0 100 100" class="w-full h-full drop-shadow-md">
+                        <!-- Black 'L' -->
                         <path d="M22 22 H38 V62 H62 V78 H22 Z" fill="#111111" class="dark:fill-white"/>
+                        <!-- White line of 'X' -->
                         <path d="M38 34 L78 78 H62 L22 34 Z" fill="#ffffff" class="dark:fill-slate-300"/>
+                        <!-- Cyan/Teal line of 'X' -->
                         <path d="M78 34 L38 78 H54 L94 34 Z" fill="#45B3A9"/>
                     </svg>
                 </div>
@@ -523,11 +525,11 @@
                     <h3 class="font-heading font-bold text-2xl text-white">Initialize Transmission</h3>
                     <form onsubmit="event.preventDefault(); alert('Message simulated successfully.'); this.reset();" class="space-y-6">
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                            <input type="text" required class="w-full px-4 py-4 rounded-xl bg-darkSurface border border-white/10 text-white focus:outline-none focus:border-gold" placeholder="Name">
-                            <input type="email" required class="w-full px-4 py-4 rounded-xl bg-darkSurface border border-white/10 text-white focus:outline-none focus:border-gold" placeholder="Email">
+                            <input type="text" required class="w-full px-4 py-4 rounded-xl bg-[#101726] border border-white/10 text-white focus:outline-none focus:border-gold" placeholder="Name">
+                            <input type="email" required class="w-full px-4 py-4 rounded-xl bg-[#101726] border border-white/10 text-white focus:outline-none focus:border-gold" placeholder="Email">
                         </div>
-                        <textarea rows="5" required class="w-full px-4 py-4 rounded-xl bg-darkSurface border border-white/10 text-white focus:outline-none focus:border-gold" placeholder="Inquiry..."></textarea>
-                        <button type="submit" class="w-full py-4 rounded-xl bg-white text-darkBg font-bold hover:bg-gold transition-colors">Send Message</button>
+                        <textarea rows="5" required class="w-full px-4 py-4 rounded-xl bg-[#101726] border border-white/10 text-white focus:outline-none focus:border-gold" placeholder="Inquiry..."></textarea>
+                        <button type="submit" class="w-full py-4 rounded-xl bg-white text-[#050816] font-bold hover:bg-[#D4AF37] transition-colors">Send Message</button>
                     </form>
                 </div>
 
@@ -537,25 +539,25 @@
                         <div class="space-y-6 text-slate-300">
                             <div class="flex items-center gap-5">
                                 <div class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center"><i data-lucide="mail" class="text-gold"></i></div>
-                                <div><span class="block text-xs font-mono text-slate-500">EMAIL</span><a href="mailto:lakanwalx@gmail.com" class="text-white hover:text-gold">lakanwalx@gmail.com</a></div>
+                                <div><span class="block text-xs font-mono text-slate-500">EMAIL</span><a href="mailto:lakanwalx@gmail.com" class="text-white hover:text-[#D4AF37]">lakanwalx@gmail.com</a></div>
                             </div>
                             <div class="flex items-center gap-5">
                                 <div class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center"><i data-lucide="send" class="text-electricBlue"></i></div>
-                                <div><span class="block text-xs font-mono text-slate-500">TELEGRAM</span><a href="https://t.me/lakanwalx" target="_blank" class="text-white hover:text-electricBlue">@lakanwalx</a></div>
+                                <div><span class="block text-xs font-mono text-slate-500">TELEGRAM</span><a href="https://t.me/lakanwalx" target="_blank" class="text-white hover:text-[#4F9CF9]">@lakanwalx</a></div>
                             </div>
                             <div class="flex items-center gap-5">
                                 <div class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center"><i data-lucide="phone" class="text-neonPurple"></i></div>
-                                <div><span class="block text-xs font-mono text-slate-500">PHONE</span><a href="tel:+17073168535" class="text-white hover:text-neonPurple">+1 707 316 8535</a></div>
+                                <div><span class="block text-xs font-mono text-slate-500">PHONE</span><a href="tel:+17073168535" class="text-white hover:text-[#8B5CF6]">+1 707 316 8535</a></div>
                             </div>
                         </div>
 
                         <div class="border-t border-white/10 pt-8">
                             <div class="flex flex-wrap gap-3">
-                                <a href="https://www.instagram.com/m0haxmad.____" target="_blank" class="p-3 rounded-xl bg-white/5 hover:bg-gold hover:text-darkBg"><i data-lucide="instagram"></i></a>
-                                <a href="https://www.tiktok.com/@liwano.___" target="_blank" class="p-3 rounded-xl bg-white/5 hover:bg-gold hover:text-darkBg"><i data-lucide="video"></i></a>
-                                <a href="https://www.facebook.com/share/1EyE5VQWUw/" target="_blank" class="p-3 rounded-xl bg-white/5 hover:bg-gold hover:text-darkBg"><i data-lucide="facebook"></i></a>
-                                <a href="https://x.com/lakanwalx" target="_blank" class="p-3 rounded-xl bg-white/5 hover:bg-gold hover:text-darkBg"><i data-lucide="twitter"></i></a>
-                                <a href="https://snapchat.com/t/wBnLHKs2" target="_blank" class="p-3 rounded-xl bg-white/5 hover:bg-gold hover:text-darkBg"><i data-lucide="camera"></i></a>
+                                <a href="https://www.instagram.com/m0haxmad.____" target="_blank" class="p-3 rounded-xl bg-white/5 hover:bg-[#D4AF37] hover:text-[#050816]"><i data-lucide="instagram"></i></a>
+                                <a href="https://www.tiktok.com/@liwano.___" target="_blank" class="p-3 rounded-xl bg-white/5 hover:bg-[#D4AF37] hover:text-[#050816]"><i data-lucide="video"></i></a>
+                                <a href="https://www.facebook.com/share/1EyE5VQWUw/" target="_blank" class="p-3 rounded-xl bg-white/5 hover:bg-[#D4AF37] hover:text-[#050816]"><i data-lucide="facebook"></i></a>
+                                <a href="https://x.com/lakanwalx" target="_blank" class="p-3 rounded-xl bg-white/5 hover:bg-[#D4AF37] hover:text-[#050816]"><i data-lucide="twitter"></i></a>
+                                <a href="https://snapchat.com/t/wBnLHKs2" target="_blank" class="p-3 rounded-xl bg-white/5 hover:bg-[#D4AF37] hover:text-[#050816]"><i data-lucide="camera"></i></a>
                             </div>
                         </div>
                     </div>
@@ -591,17 +593,26 @@
         </div>
     </div>
 
-    <!-- JavaScript Scripts embedded -->
+    <!-- JavaScript Scripts embedded safely -->
     <script>
-        lucide.createIcons();
+        // Core initialization safely wrapped to prevent blocking
+        function initApp() {
+            // Load icons if library is ready
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
 
-        window.addEventListener('load', () => {
+            // Hide Loader Instantly
             const loader = document.getElementById('loader');
-            loader.style.opacity = '0';
-            setTimeout(() => { loader.style.display = 'none'; }, 500);
+            if (loader) {
+                loader.style.opacity = '0';
+                setTimeout(() => { loader.style.display = 'none'; }, 500);
+            }
             
-            typeWriter();
+            // Start typewriter
+            setTimeout(typeWriter, 400);
             
+            // Initialize counters
             const counters = document.querySelectorAll('.counter');
             counters.forEach(counter => {
                 const target = +counter.getAttribute('data-target');
@@ -619,13 +630,21 @@
                 };
                 updateCounter();
             });
-        });
+        }
+
+        // Run as soon as DOM is ready, do not wait for external image/font delays
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initApp);
+        } else {
+            initApp();
+        }
 
         const typeText = "Engineering Digital Value";
         let typeIndex = 0;
         function typeWriter() {
-            if (typeIndex < typeText.length) {
-                document.getElementById("typing-text").innerHTML += typeText.charAt(typeIndex);
+            const typingEl = document.getElementById("typing-text");
+            if (typingEl && typeIndex < typeText.length) {
+                typingEl.innerHTML += typeText.charAt(typeIndex);
                 typeIndex++;
                 setTimeout(typeWriter, 80);
             }
@@ -657,14 +676,19 @@
             const icon = document.getElementById('theme-icon');
             html.classList.toggle('light');
             html.classList.toggle('dark');
-            icon.setAttribute('data-lucide', html.classList.contains('light') ? 'moon' : 'sun');
-            lucide.createIcons();
+            if(icon && typeof lucide !== 'undefined') {
+                icon.setAttribute('data-lucide', html.classList.contains('light') ? 'moon' : 'sun');
+                lucide.createIcons();
+            }
         }
 
         window.addEventListener('scroll', () => {
-            const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            document.getElementById('scroll-progress').style.width = ((winScroll / height) * 100) + '%';
+            const progress = document.getElementById('scroll-progress');
+            if (progress) {
+                const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                progress.style.width = ((winScroll / height) * 100) + '%';
+            }
         });
 
         function openModal(title, text) {
