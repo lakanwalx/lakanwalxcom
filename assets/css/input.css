@@ -1,0 +1,47 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&family=Space+Grotesk:wght@500;600;700&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root { color-scheme: dark; }
+  html { scroll-behavior: smooth; }
+  body { @apply m-0 bg-slate-50 font-sans text-slate-900 antialiased transition-colors duration-300 dark:bg-ink dark:text-white; }
+  ::selection { @apply bg-gold text-ink; }
+  :focus-visible { @apply outline-none ring-2 ring-electric ring-offset-4 ring-offset-white dark:ring-offset-ink; }
+}
+
+@layer components {
+  .container-x { @apply mx-auto w-full max-w-7xl px-5 sm:px-8; }
+  .eyebrow { @apply font-mono text-xs font-medium uppercase tracking-[.2em] text-electric; }
+  .display { @apply font-display text-4xl font-semibold tracking-[-.045em] sm:text-5xl lg:text-7xl; }
+  .section-title { @apply font-display text-3xl font-semibold tracking-[-.035em] sm:text-5xl; }
+  .gradient-text { @apply bg-gradient-to-r from-gold via-amber-200 to-electric bg-clip-text text-transparent; }
+  .glass { @apply border border-slate-200/80 bg-white/70 shadow-xl shadow-slate-200/30 backdrop-blur-xl dark:border-white/10 dark:bg-white/[.045] dark:shadow-black/20; }
+  .card { @apply glass rounded-[1.5rem] p-6 transition duration-300 hover:-translate-y-1 hover:border-electric/30; }
+  .btn-primary { @apply inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-ink transition hover:-translate-y-0.5 hover:bg-gold dark:bg-white dark:text-ink; }
+  .btn-secondary { @apply inline-flex items-center justify-center rounded-full border border-slate-300 px-6 py-3 text-sm font-semibold transition hover:border-electric hover:text-electric dark:border-white/15; }
+  .nav-link { @apply text-sm text-slate-600 transition hover:text-slate-950 dark:text-slate-300 dark:hover:text-white; }
+  .active { @apply text-slate-950 dark:text-white; }
+  .tag { @apply rounded-full border border-slate-200 bg-white/70 px-3 py-1.5 text-xs text-slate-600 dark:border-white/10 dark:bg-white/[.04] dark:text-slate-300; }
+  .section { @apply py-20 sm:py-28; }
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+}
+
+.mesh {
+  background:
+    radial-gradient(circle at 14% 12%, rgba(79,156,249,.15), transparent 30rem),
+    radial-gradient(circle at 82% 20%, rgba(139,92,246,.11), transparent 30rem),
+    radial-gradient(circle at 50% 95%, rgba(212,175,55,.08), transparent 28rem);
+}
+.grid-fade {
+  background-image: linear-gradient(rgba(148,163,184,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(148,163,184,.08) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: linear-gradient(to bottom, black, transparent 82%);
+}
+.progress-bar { transform-origin: left; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  .reveal { opacity: 1; transform: none; }
